@@ -473,6 +473,22 @@ def server_error(e):
     return "Server error", 500
 
 
+#THE FOLLOWING IS THE ENDPOINT THAT WILL KEEP NEON NOT SLEEPING WHEN THERE ARE NO REQUESTS FOR A LONG TIME
+@app.route("/healthz")
+def healthz():
+    """Lightweight endpoint that pings the DB to keep Neon warm."""
+    try:
+        conn = get_connection()
+        cur = conn.cursor()
+        cur.execute("SELECT 1")  # This simple query wakes Neon
+        cur.fetchone()
+        cur.close()
+        conn.close()
+        return {"status": "ok", "db": "awake"}, 200
+    except Exception as e:
+        return {"status": "error", "message": str(e)}, 500
+
+    
 # ---------------------------------------------------------------------------
 # Run (dev only — Render uses gunicorn app:app)
 # ---------------------------------------------------------------------------
