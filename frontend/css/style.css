@@ -1,0 +1,439 @@
+/* ============================================================
+   style.css — shared by the customer pages (index + order)
+   Mobile-first, responsive (phone / tablet / laptop)
+   ============================================================ */
+
+:root {
+  --brand:        #854F0B;
+  --brand-hover:  #633806;
+  --sand-light:   #FAEEDA;
+  --brown-dark:   #412402;
+  --brown-mid:    #633806;
+  --grey-light:   #f8f9fa;
+  --white:        #ffffff;
+  --text:         #2b2b2b;
+  --text-muted:   #6b6b6b;
+  --border:       #e3e3e3;
+  --danger:       #b93535;
+  --success:      #0f7e5c;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { height: 100%; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--text);
+  background: var(--white);
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;         /* keeps footer at the bottom on short pages */
+}
+
+img { max-width: 100%; display: block; }
+a   { color: var(--brand); text-decoration: none; }
+
+/* ---------- Layout ---------- */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px;
+  flex: 1;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.site-header .inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.logo {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--brand);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.logo .mark {
+  width: 28px; height: 28px;
+  border-radius: 6px;
+  background: var(--sand-light);
+  display: grid; place-items: center;
+  font-size: 16px;
+}
+.nav-links {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  font-size: 0.9rem;
+}
+.nav-links a { color: var(--brown-mid); }
+.nav-links a:hover { color: var(--brand); }
+.nav-links .call-btn {
+  background: var(--brand);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+.nav-links .call-btn:hover { background: var(--brand-hover); color: #fff; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+  text-align: center;
+  transition: background 0.15s, color 0.15s, border 0.15s;
+}
+.btn-primary { background: var(--brand); color: #fff; }
+.btn-primary:hover { background: var(--brand-hover); }
+.btn-outline {
+  background: transparent;
+  color: var(--brown-mid);
+  border-color: var(--brand);
+}
+.btn-outline:hover { background: var(--sand-light); }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* ---------- Hero (index) ---------- */
+.intro {
+  background: var(--sand-light);
+  border-radius: 16px;
+  padding: 24px 20px;
+  display: grid;
+  grid-template-columns: 1fr;   /* phone: stacked */
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 32px;
+}
+.intro .label {
+  color: var(--brand);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+.intro h1 {
+  color: var(--brown-dark);
+  font-size: 1.6rem;
+  line-height: 1.25;
+  margin-bottom: 10px;
+}
+.intro p {
+  color: var(--brown-mid);
+  font-size: 0.95rem;
+  margin-bottom: 18px;
+}
+.intro .cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.intro .hero-image {
+  background: #FAC775;
+  border-radius: 12px;
+  min-height: 180px;
+  display: grid;
+  place-items: center;
+  color: var(--brown-mid);
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 12px;
+}
+.intro .hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* ---------- Sand types grid ---------- */
+.section-title {
+  font-size: 1.25rem;
+  color: var(--brown-dark);
+  margin-bottom: 4px;
+}
+.section-sub {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 18px;
+}
+
+.sand-grid {
+  display: grid;
+  grid-template-columns: 1fr;            /* phone: 1 column */
+  gap: 16px;
+}
+.sand-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+.sand-card .thumb {
+  height: 140px;
+  background: var(--sand-light);
+  overflow: hidden;
+}
+.sand-card .thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.sand-card .body {
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+.sand-card h3 { font-size: 1rem; color: var(--brown-dark); }
+.sand-card .price {
+  color: var(--brand);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.sand-card .desc {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  flex: 1;
+}
+.sand-card .btn { margin-top: 6px; }
+
+/* Loading / error text */
+.state-msg {
+  padding: 16px;
+  background: var(--grey-light);
+  border-radius: 10px;
+  color: var(--text-muted);
+  text-align: center;
+}
+.state-msg.error { color: var(--danger); background: #fdeeee; }
+
+/* ---------- How it works ---------- */
+.how {
+  margin-top: 40px;
+  padding: 28px 20px;
+  background: var(--grey-light);
+  border-radius: 16px;
+}
+.how h2 {
+  text-align: center;
+  color: var(--brown-dark);
+  font-size: 1.25rem;
+  margin-bottom: 20px;
+}
+.how-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  text-align: center;
+}
+.how-step .icon {
+  width: 48px; height: 48px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  background: var(--sand-light);
+  display: grid; place-items: center;
+  font-size: 22px;
+  color: var(--brand);
+}
+.how-step h3 { font-size: 1rem; color: var(--brown-dark); margin-bottom: 4px; }
+.how-step p  { font-size: 0.875rem; color: var(--text-muted); }
+
+/* ---------- Order page ---------- */
+.order-layout {
+  display: grid;
+  grid-template-columns: 1fr;   /* phone: stacked */
+  gap: 24px;
+}
+.form-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  background: #fff;
+}
+.form-card h2 {
+  font-size: 1.15rem;
+  color: var(--brown-dark);
+  margin-bottom: 16px;
+}
+.field { margin-bottom: 14px; }
+.field label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--brown-dark);
+  margin-bottom: 6px;
+}
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: #fff;
+  color: var(--text);
+}
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(133, 79, 11, 0.12);
+}
+.field textarea { resize: vertical; min-height: 80px; }
+.field .hint { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; }
+
+.form-errors {
+  display: none;
+  background: #fdeeee;
+  border: 1px solid #f3c1c1;
+  color: var(--danger);
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  margin-bottom: 14px;
+}
+.form-errors.show { display: block; }
+.form-errors ul { margin-left: 16px; }
+
+/* Order summary card */
+.summary-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+  background: var(--grey-light);
+  align-self: start;
+}
+.summary-card .thumb {
+  height: 140px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--sand-light);
+  margin-bottom: 12px;
+}
+.summary-card .thumb img { width: 100%; height: 100%; object-fit: cover; }
+.summary-card h3 { font-size: 1.05rem; color: var(--brown-dark); margin-bottom: 6px; }
+.summary-card .desc { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 12px; }
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  padding: 6px 0;
+  border-top: 1px dashed var(--border);
+}
+.summary-row:first-of-type { border-top: none; }
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--brand);
+  padding-top: 10px;
+  margin-top: 6px;
+  border-top: 2px solid var(--brand);
+}
+
+/* Thank-you block (replaces the form on success) */
+.thankyou {
+  text-align: center;
+  padding: 30px 20px;
+}
+.thankyou .check {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: #d5eed3;
+  color: var(--success);
+  display: grid; place-items: center;
+  font-size: 32px;
+  margin: 0 auto 16px;
+}
+.thankyou h2 { color: var(--brown-dark); margin-bottom: 8px; }
+.thankyou p  { color: var(--text-muted); margin-bottom: 8px; }
+.thankyou .order-no {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--brand);
+  margin: 12px 0 20px;
+}
+.thankyou .actions {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  justify-content: center;
+  margin-top: 16px;
+}
+.thankyou .details {
+  display: inline-block;
+  text-align: left;
+  background: var(--grey-light);
+  padding: 14px 18px;
+  border-radius: 10px;
+  margin: 12px 0;
+  font-size: 0.9rem;
+}
+.thankyou .details div { padding: 3px 0; }
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background: var(--brown-dark);
+  color: var(--sand-light);
+  text-align: center;
+  padding: 22px 16px;
+  margin-top: 40px;
+  font-size: 0.85rem;
+}
+.site-footer .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 20px;
+  margin-top: 6px;
+}
+.site-footer a { color: var(--sand-light); text-decoration: underline; }
+
+/* ---------- Responsive breakpoints ---------- */
+@media (min-width: 640px) {
+  /* tablet */
+  .sand-grid { grid-template-columns: repeat(2, 1fr); }
+  .how-grid  { grid-template-columns: repeat(3, 1fr); }
+  .intro h1  { font-size: 2rem; }
+}
+
+@media (min-width: 960px) {
+  /* laptop */
+  .container { padding: 24px; }
+  .intro {
+    grid-template-columns: 1fr 1fr;   /* two equal halves */
+    padding: 40px 36px;
+  }
+  .intro h1 { font-size: 2.2rem; }
+  .intro .hero-image { min-height: 260px; }
+  .sand-grid { grid-template-columns: repeat(4, 1fr); }
+  .order-layout { grid-template-columns: 1.4fr 1fr; }
+  .how { padding: 36px 32px; }
+}

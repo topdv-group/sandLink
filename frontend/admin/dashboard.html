@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — Sand Supply Rwanda</title>
+  <link rel="stylesheet" href="/css/admin.css" />
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header class="admin-header">
+    <div class="title">Sand Supply Rwanda — Staff dashboard</div>
+    <div>
+      <span class="user" id="adminUser"></span>
+      <button class="logout-btn" id="logoutBtn">Log out</button>
+    </div>
+  </header>
+
+  <!-- ================= MAIN ================= -->
+  <main class="admin-main">
+
+    <!-- 4 stat cards -->
+    <section class="stats">
+      <div class="stat-card">
+        <div class="label">Total orders</div>
+        <div class="value" id="statTotal">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">New orders</div>
+        <div class="value" id="statNew">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Delivered</div>
+        <div class="value" id="statDelivered">0</div>
+      </div>
+      <div class="stat-card revenue">
+        <div class="label">Delivered revenue</div>
+        <div class="value" id="statRevenue">0 RWF</div>
+      </div>
+    </section>
+
+    <!-- Tabs: Orders / Sand prices -->
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="tabOrders">Orders</button>
+      <button class="tab-btn" data-tab="tabSands">Sand prices</button>
+    </div>
+
+    <!-- ============ ORDERS TAB ============ -->
+    <section class="tab-panel active" id="tabOrders">
+
+      <div class="toolbar">
+        <button class="filter-btn active" data-status="All">All</button>
+        <button class="filter-btn" data-status="New">New</button>
+        <button class="filter-btn" data-status="Confirmed">Confirmed</button>
+        <button class="filter-btn" data-status="Delivered">Delivered</button>
+        <button class="filter-btn" data-status="Cancelled">Cancelled</button>
+        <input class="search-box" id="searchInput"
+               type="search" placeholder="Search by name or phone…" />
+      </div>
+
+      <div class="orders-table-wrap">
+        <table class="orders">
+          <thead>
+            <tr>
+              <th>Order</th>
+              <th>Date</th>
+              <th>Customer</th>
+              <th>Phone</th>
+              <th>Location</th>
+              <th>Sand</th>
+              <th>Trucks</th>
+              <th>Total</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="ordersBody">
+            <tr><td colspan="9" class="empty-msg">Loading orders…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ============ SANDS TAB ============ -->
+    <section class="tab-panel" id="tabSands">
+      <div class="sands-list" id="sandsList">
+        <div class="empty-msg">Loading sand prices…</div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="/js/admin.js"></script>
+</body>
+</html>

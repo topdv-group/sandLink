@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin login — Sand Supply Rwanda</title>
+  <link rel="stylesheet" href="/css/admin.css" />
+</head>
+<body>
+
+  <div class="login-wrap">
+    <form class="login-card" id="loginForm">
+      <div class="logo">Sand Supply Rwanda</div>
+      <h1>Staff login</h1>
+
+      <div class="login-error" id="loginError"></div>
+
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" autocomplete="username" required />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" autocomplete="current-password" required />
+
+      <button type="submit" id="loginBtn">Log in</button>
+    </form>
+  </div>
+
+  <script>
+    // ----------------------------------------------------------------
+    // Simple login form handler (kept inline for this small page)
+    // ----------------------------------------------------------------
+    const form   = document.getElementById("loginForm");
+    const error  = document.getElementById("loginError");
+    const btn    = document.getElementById("loginBtn");
+
+    function showError(msg) {
+      error.textContent = msg;
+      error.classList.add("show");
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      error.classList.remove("show");
+      btn.disabled = true;
+      btn.textContent = "Checking…";
+
+      try {
+        const res = await fetch("/api/admin/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username: document.getElementById("username").value.trim(),
+            password: document.getElementById("password").value,
+          }),
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+          showError(data.error || "Login failed.");
+          btn.disabled = false;
+          btn.textContent = "Log in";
+          return;
+        }
+
+        // Success — go to the dashboard
+        window.location.href = "/admin/dashboard";
+      } catch (err) {
+        console.error(err);
+        showError("Network error. Please try again.");
+        btn.disabled = false;
+        btn.textContent = "Log in";
+      }
+    });
+  </script>
+</body>
+</html>

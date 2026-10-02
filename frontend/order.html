@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Place your order — Sand Supply Rwanda</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header">
+    <div class="inner">
+      <a class="logo" href="/">
+        <span class="mark">⛰</span>
+        Sand Supply Rwanda
+      </a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a class="call-btn" href="tel:+250788000000">Call us</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ================= MAIN ================= -->
+  <main class="container">
+
+    <!-- This message shows if the ?id= is missing or invalid -->
+    <div id="pageError" class="state-msg error" style="display:none"></div>
+
+    <!-- The order layout (hidden until we know the sand) -->
+    <div id="orderLayout" class="order-layout" style="display:none">
+
+      <!-- LEFT: form -->
+      <div>
+        <div class="form-card" id="formCard">
+          <h2>Place your order</h2>
+
+          <!-- Server validation errors appear here -->
+          <div class="form-errors" id="formErrors"></div>
+
+          <form id="orderForm" novalidate>
+            <div class="field">
+              <label for="customer_name">Full name *</label>
+              <input type="text" id="customer_name" name="customer_name"
+                     maxlength="100" required autocomplete="name" />
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone number *</label>
+              <input type="tel" id="phone" name="phone"
+                     placeholder="0788123456 or +250788123456" required
+                     autocomplete="tel" />
+              <div class="hint">Rwandan number only (starts with 07 or +2507).</div>
+            </div>
+
+            <div class="field">
+              <label for="district">District *</label>
+              <input type="text" id="district" name="district" required />
+            </div>
+
+            <div class="field">
+              <label for="address">Sector and address *</label>
+              <input type="text" id="address" name="address"
+                     placeholder="e.g. Kicukiro, Gahanga — near the market"
+                     required />
+            </div>
+
+            <div class="field">
+              <label for="quantity">Quantity (trucks) *</label>
+              <input type="number" id="quantity" name="quantity"
+                     min="1" max="1000" step="1" value="1" required />
+            </div>
+
+            <div class="field">
+              <label for="notes">Notes (optional)</label>
+              <textarea id="notes" name="notes" maxlength="500"
+                        placeholder="Anything the driver should know?"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="submitBtn"
+                    style="width:100%">Place order</button>
+          </form>
+        </div>
+
+        <!-- This replaces the form after a successful order -->
+        <div class="form-card thankyou" id="thankyouCard" style="display:none">
+          <div class="check">✓</div>
+          <h2>Order received</h2>
+          <p>We will call you soon to confirm your order and delivery.</p>
+          <div class="order-no" id="thankyouOrderNo">#0000</div>
+          <div class="details" id="thankyouDetails"></div>
+          <div class="actions">
+            <a class="btn btn-primary" id="whatsappBtn" target="_blank" rel="noopener">
+              💬 Chat on WhatsApp
+            </a>
+            <a class="btn btn-outline" href="/">Back to home</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: summary card -->
+      <aside class="summary-card" id="summaryCard">
+        <div class="thumb">
+          <img id="summaryImage" alt="" src="" />
+        </div>
+        <h3 id="summaryName">—</h3>
+        <p class="desc" id="summaryDesc">—</p>
+
+        <div class="summary-row">
+          <span>Price per truck</span>
+          <span id="summaryPrice">—</span>
+        </div>
+        <div class="summary-row">
+          <span>Quantity</span>
+          <span id="summaryQty">1 truck</span>
+        </div>
+        <div class="summary-total">
+          <span>Estimated total</span>
+          <span id="summaryTotal">0 RWF</span>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div><strong>Sand Supply Rwanda</strong></div>
+    <div class="row">
+      <span>Call / WhatsApp: <a href="tel:+250788000000">+250 788 000 000</a></span>
+      <span>Email: <a href="mailto:info@sandsupply.rw">info@sandsupply.rw</a></span>
+      <span>Kigali, Rwanda</span>
+    </div>
+  </footer>
+
+  <script src="/js/order.js"></script>
+</body>
+</html>

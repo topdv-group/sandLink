@@ -1,0 +1,4 @@
+venv/
+sand.db
+__pycache__/
+.env
