@@ -196,7 +196,7 @@
       "Hello Sand Supply Rwanda, I just placed order " + data.order_number +
       " for " + payload.quantity + " tonnes of " + sand.name + ".";
     const wa = document.getElementById("whatsappBtn");
-    wa.href = "https://wa.me/250788000000?text=" + encodeURIComponent(msg);
+    wa.href = "https://wa.me/+250782121159?text=" + encodeURIComponent(msg);
 
     // Scroll to top so the user sees the message
     window.scrollTo({ top: 0, behavior: "smooth" });
